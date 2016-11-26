@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ead26d6985bff34ab7c6d2ffb743d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: Grass
   blocking: 0
   movementCost: 1
   coverBonus: 0

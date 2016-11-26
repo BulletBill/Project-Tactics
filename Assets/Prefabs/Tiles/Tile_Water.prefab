@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ead26d6985bff34ab7c6d2ffb743d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: Water
   blocking: 1
   movementCost: 0
   coverBonus: 0
@@ -87,6 +88,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: blocking
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Name
+      value: Water
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

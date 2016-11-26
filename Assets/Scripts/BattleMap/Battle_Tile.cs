@@ -4,6 +4,7 @@ using System.Collections;
 public class Battle_Tile : MonoBehaviour {
 
 	//Game rules for the tile
+	public string Name;
 	public bool blocking;
 	public int movementCost;
 	public int coverBonus;

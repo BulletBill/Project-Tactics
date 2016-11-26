@@ -33,6 +33,9 @@ public class Battle_TileMap : MonoBehaviour {
 		sizeX = mapImage.width;
 		sizeY = mapImage.height;
 
+		//Set camera bounds based on size
+		Camera.main.GetComponent<CameraMovement>().SetCameraBounds(sizeX, sizeY);
+
 		for (int x = 0; x < sizeX; x++) {
 			for (int y = 0; y < sizeY; y++) {
 
@@ -54,7 +57,7 @@ public class Battle_TileMap : MonoBehaviour {
 
 		foreach (ColorToTile ctp in TileDefList.colorToPrefab) {
 			if (ctp.color.Equals(c)) { //ctp.color.r == c.r && ctp.color.g == c.g && ctp.color.b == c.b && ctp.color.a == c.a) {
-				GameObject go = Instantiate(ctp.prefab, new Vector3(x, y, 0), Quaternion.identity) as GameObject;
+				GameObject go = Instantiate(ctp.prefab, new Vector3(x + 0.5f, y + 0.5f, 0), Quaternion.identity) as GameObject;
 				go.transform.parent = transform;
 
 				Battle_Tile newTile = go.GetComponent<Battle_Tile>();
