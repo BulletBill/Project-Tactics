@@ -5,11 +5,7 @@ public class TileSelection : MonoBehaviour {
 
 	public enum SelectMode { None, TargetAlly, TargetEnemy, TargetArea, Move }
 	SelectMode CurrentMode = SelectMode.None;
-	GameObject CurrentTarget;
-
-	public Object TileHighlightPrefab;
-	GameObject TileHighlight;
-
+	
 	Vector2 MouseWorldPosition;
 	Vector2 PrevMouseWorldPosition;
 
@@ -18,7 +14,6 @@ public class TileSelection : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		TileHighlight = GameObject.Instantiate(TileHighlightPrefab) as GameObject;
 	}
 	
 	// Update is called once per frame
@@ -26,21 +21,16 @@ public class TileSelection : MonoBehaviour {
 		MouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 		if (PrevMouseWorldPosition != MouseWorldPosition) {
-			this.transform.position = MouseWorldPosition;
-
-			if (TileHighlight != null) {
-				Vector2 NewHighLightPosition = new Vector2(Mathf.Floor(this.transform.position.x), Mathf.Floor(this.transform.position.y));
-				TileHighlight.transform.position = NewHighLightPosition;
-			}
+			ChangeSelection(Mathf.Floor(MouseWorldPosition.x), Mathf.Floor(MouseWorldPosition.y));
 		}		
 
 		PrevMouseWorldPosition = MouseWorldPosition;
 	}
 
-	void ChangeSelection(int NewX, int NewY) {
-		SelectionX = NewX;
-		SelectionY = NewY;
+	void ChangeSelection(float NewX, float NewY) {
+		SelectionX = (int)NewX;
+		SelectionY = (int)NewY;
 
-		TileHighlight.transform.position = new Vector2(NewX, NewY);
+		this.transform.position = new Vector2(NewX, NewY);
 	}
 }

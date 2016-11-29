@@ -41,6 +41,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileDefList: {fileID: 11467720, guid: 93d63205113f4e34184f2b54dc8ab7b0, type: 2}
   mapImage: {fileID: 2800000, guid: e45303478fafd9847b3da69dbf49dc12, type: 3}
+  TileSelectorObject: {fileID: 117776, guid: e8612c87689c4df4d823f16a0c026255, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

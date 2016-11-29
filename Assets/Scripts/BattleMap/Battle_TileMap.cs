@@ -14,6 +14,10 @@ public class Battle_TileMap : MonoBehaviour {
 	//Idealy we could generate the map from an image
 	public Texture2D mapImage;
 
+	//GameObject used for tileselection
+	public Object TileSelectorObject;
+	TileSelection TileSelector;
+
 	//Set by loaded map asset
 	int sizeX;
 	int sizeY;
@@ -21,6 +25,9 @@ public class Battle_TileMap : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GenerateTileMap();
+
+		GameObject ts = GameObject.Instantiate(TileSelectorObject) as GameObject;
+		TileSelector = ts.GetComponent<TileSelection>();
 	}
 
 	//------------------------------------------------------
