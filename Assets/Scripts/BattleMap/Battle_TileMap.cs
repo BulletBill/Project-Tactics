@@ -27,6 +27,7 @@ public class Battle_TileMap : MonoBehaviour {
 		GenerateTileMap();
 
 		GameObject ts = GameObject.Instantiate(TileSelectorObject) as GameObject;
+		ts.transform.parent = this.transform;
 		TileSelector = ts.GetComponent<TileSelection>();
 	}
 
