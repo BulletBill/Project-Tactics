@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class LevelLoader : MonoBehaviour {
 
 	public Texture2D LevelMap;
-	List<GameObject> map;
 
 	// Use this for initialization
 	void Start () {

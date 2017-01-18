@@ -66,7 +66,9 @@
     <Compile Include="Assets\Scripts\BattleMap\Battle_Tile.cs" />
     <Compile Include="Assets\Scripts\BattleMap\Battle_TileMap.cs" />
     <Compile Include="Assets\Scripts\GameInstance.cs" />
+    <Compile Include="Assets\Scripts\InputSettings.cs" />
     <Compile Include="Assets\Scripts\Interface\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Interface\TerrainInfoUI.cs" />
     <Compile Include="Assets\Scripts\Interface\TileSelection.cs" />
     <Compile Include="Assets\Scripts\World\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\World\Map.cs" />

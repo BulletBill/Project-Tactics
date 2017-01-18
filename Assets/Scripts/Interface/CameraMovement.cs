@@ -34,8 +34,8 @@ public class CameraMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 NewPosition = ParentCamera.transform.position;
-		NewPosition.x += Input.GetAxis("Horizontal") * KeyboardScrollSpeed * Time.deltaTime;
-		NewPosition.y += Input.GetAxis("Vertical") * KeyboardScrollSpeed * Time.deltaTime;
+		NewPosition.x += Input.GetAxis("CameraHorizontal") * KeyboardScrollSpeed * Time.deltaTime;
+		NewPosition.y += Input.GetAxis("CameraVertical") * KeyboardScrollSpeed * Time.deltaTime;
 
 		if (BoundsSet) {
 			if (NewPosition.x < CameraBounds.x) { NewPosition.x = CameraBounds.x; }

@@ -4,19 +4,22 @@ using System.Collections;
 public class GameInstance : MonoBehaviour {
 
 	//Static reference to the game instance singleton
-	public static GameObject Game;
+	public static GameInstance Game;
+
+	public InputSettings Input;
 
 	// Use this for initialization
 	void Awake() {
 		if (!Game) {
 			DontDestroyOnLoad(this.gameObject);
-			Game = this.gameObject;
+			Game = this;
 		} else {
 			GameObject.Destroy(this.gameObject);
 		}
 	}
 
 	void Start () {
+		Input = new InputSettings();
 	}
 	
 	// Update is called once per frame

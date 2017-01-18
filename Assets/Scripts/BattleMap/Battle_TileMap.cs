@@ -27,7 +27,7 @@ public class Battle_TileMap : MonoBehaviour {
 		GenerateTileMap();
 
 		GameObject ts = GameObject.Instantiate(TileSelectorObject) as GameObject;
-		ts.transform.parent = this.transform;
+		//ts.transform.parent = this.transform;
 		TileSelector = ts.GetComponent<TileSelection>();
 	}
 
@@ -84,7 +84,7 @@ public class Battle_TileMap : MonoBehaviour {
 	//------------------------------------------------------
 	//Map helper functions
 	public Battle_Tile TileAt(int tx, int ty) {
-		int index = (ty * sizeX) + tx;
+		int index = (tx * sizeX) + ty;
 		if (index < map.Count) {
 			return map[index];
 		}
