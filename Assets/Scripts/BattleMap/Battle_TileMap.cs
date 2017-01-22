@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[ExecuteInEditMode]
 public class Battle_TileMap : MonoBehaviour {
 
 	//Used to convert colors in the map image to tile objects
@@ -14,10 +13,6 @@ public class Battle_TileMap : MonoBehaviour {
 	//Idealy we could generate the map from an image
 	public Texture2D mapImage;
 
-	//GameObject used for tileselection
-	public Object TileSelectorObject;
-	TileSelection TileSelector;
-
 	//Set by loaded map asset
 	int sizeX;
 	int sizeY;
@@ -25,10 +20,6 @@ public class Battle_TileMap : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GenerateTileMap();
-
-		GameObject ts = GameObject.Instantiate(TileSelectorObject) as GameObject;
-		//ts.transform.parent = this.transform;
-		TileSelector = ts.GetComponent<TileSelection>();
 	}
 
 	//------------------------------------------------------
@@ -85,11 +76,11 @@ public class Battle_TileMap : MonoBehaviour {
 	//Map helper functions
 	public Battle_Tile TileAt(int tx, int ty) {
 		int index = (tx * sizeX) + ty;
-		if (index < map.Count) {
+		if (index < map.Count && index > 0) {
 			return map[index];
 		}
 
-		Debug.LogError("Tile array index of " + index.ToString() + " is out of bounds.");
+		//Debug.LogError("Tile array index of " + index.ToString() + " is out of bounds.");
 		return null;
 	}
 }

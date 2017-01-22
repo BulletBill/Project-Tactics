@@ -6,8 +6,8 @@ public class TileSelection : MonoBehaviour {
 	//public enum SelectMode { None, TargetAlly, TargetEnemy, TargetArea, Move }
 	//SelectMode CurrentMode = SelectMode.None;
 	
-	Vector2 MouseWorldPosition;
-	Vector2 PrevMouseWorldPosition;
+	Vector2 MousePosition;
+	Vector2 PrevMousePosition;
 
 	int HoverX;
 	int HoverY;
@@ -32,10 +32,11 @@ public class TileSelection : MonoBehaviour {
 	int VertDelta;
 
 	void Update () {
-		MouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		MousePosition = Input.mousePosition;
 
 		//Move hover selection with mouse
-		if (PrevMouseWorldPosition != MouseWorldPosition) {
+		if (PrevMousePosition != MousePosition) {
+			Vector2 MouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			ChangeHover(Mathf.Floor(MouseWorldPosition.x), Mathf.Floor(MouseWorldPosition.y));
 		}
 
@@ -59,7 +60,7 @@ public class TileSelection : MonoBehaviour {
 			keyWaitTime -= Time.deltaTime;
 		}
 
-		PrevMouseWorldPosition = MouseWorldPosition;
+		PrevMousePosition = MousePosition;
 	}
 
 	void ChangeHover(float NewX, float NewY) {
@@ -67,10 +68,15 @@ public class TileSelection : MonoBehaviour {
 		HoverY = (int)NewY;
 
 		this.transform.position = new Vector2(NewX, NewY);
-		TerrainInfo.SetValues(GetHoverTile().description, GetHoverTile().GetComponent<SpriteRenderer>().sprite);
+
+		//Set info on the UI for the tile
+		Battle_Tile hoverTile = GetHoverTile();
+		if (hoverTile != null) {
+			TerrainInfo.SetValues(GetHoverTile().description, GetHoverTile().GetComponent<SpriteRenderer>().sprite);
+		}
 	}
 
-	Battle_Tile GetHoverTile() {
+	Battle_Tile GetHoverTile() { 
 		return TheTileMap.TileAt(HoverX, HoverY);
 	}
 }
