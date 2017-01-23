@@ -5,7 +5,7 @@ public class TileSelection : MonoBehaviour {
 
 	//public enum SelectMode { None, TargetAlly, TargetEnemy, TargetArea, Move }
 	//SelectMode CurrentMode = SelectMode.None;
-	
+
 	Vector2 MousePosition;
 	Vector2 PrevMousePosition;
 
@@ -13,7 +13,7 @@ public class TileSelection : MonoBehaviour {
 	int HoverY;
 	float keyWaitTime;
 
-	Battle_Tile SelectedTile;
+	public Battle_Tile SelectedTile;
 
 	//Reference to the tile map
 	Battle_TileMap TheTileMap;
@@ -21,23 +21,23 @@ public class TileSelection : MonoBehaviour {
 	TerrainInfoUI TerrainInfo;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		TheTileMap = GameObject.FindGameObjectWithTag("MainTileMap").GetComponent<Battle_TileMap>();
 		TerrainInfo = GameObject.FindGameObjectWithTag("TerrainInfoUI").GetComponent<TerrainInfoUI>();
-    }
+	}
 
 	// Update is called once per frame
 	Vector2 KeyboardDelta;
 	int HorzDelta;
 	int VertDelta;
 
-	void Update () {
+	void Update() {
 		MousePosition = Input.mousePosition;
 
 		//Move hover selection with mouse
 		if (PrevMousePosition != MousePosition) {
 			Vector2 MouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			ChangeHover(Mathf.Floor(MouseWorldPosition.x), Mathf.Floor(MouseWorldPosition.y));
+			ChangeHover((int)MouseWorldPosition.x, (int)MouseWorldPosition.y);
 		}
 
 		//Move hover selection with digital input
@@ -60,23 +60,27 @@ public class TileSelection : MonoBehaviour {
 			keyWaitTime -= Time.deltaTime;
 		}
 
+		//Reset repeat if all inputs are clear so you can quickly tap
+		if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0) {
+			keyWaitTime = 0;
+		}
+
 		PrevMousePosition = MousePosition;
 	}
 
-	void ChangeHover(float NewX, float NewY) {
-		HoverX = (int)NewX;
-		HoverY = (int)NewY;
+	void ChangeHover(int NewX, int NewY) {
+		//Only operate if the new tile is valid
+		Battle_Tile hoverTile = TheTileMap.TileAt(NewX, NewY);
 
-		this.transform.position = new Vector2(NewX, NewY);
-
-		//Set info on the UI for the tile
-		Battle_Tile hoverTile = GetHoverTile();
 		if (hoverTile != null) {
-			TerrainInfo.SetValues(GetHoverTile().description, GetHoverTile().GetComponent<SpriteRenderer>().sprite);
-		}
-	}
 
-	Battle_Tile GetHoverTile() { 
-		return TheTileMap.TileAt(HoverX, HoverY);
+			SelectedTile = hoverTile;
+
+			this.transform.position = new Vector2(NewX, NewY);
+			HoverX = NewX;
+			HoverY = NewY;
+
+			TerrainInfo.SetValues(hoverTile.description, hoverTile.GetComponent<SpriteRenderer>().sprite);
+		}
 	}
 }

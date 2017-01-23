@@ -39,6 +39,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a517e93b41143f428729ec8b2f78bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Input:
+    KeyRepeat: 0.2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

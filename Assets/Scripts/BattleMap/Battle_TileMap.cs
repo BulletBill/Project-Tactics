@@ -38,7 +38,7 @@ public class Battle_TileMap : MonoBehaviour {
 		for (int x = 0; x < sizeX; x++) {
 			for (int y = 0; y < sizeY; y++) {
 
-				SpawnTileAt(allPixels[(y * sizeX) + x], x, y);
+				SpawnTileAt(allPixels[(y * sizeY) + x], x, y);
 
 			}
 		}
@@ -76,7 +76,7 @@ public class Battle_TileMap : MonoBehaviour {
 	//Map helper functions
 	public Battle_Tile TileAt(int tx, int ty) {
 		int index = (tx * sizeX) + ty;
-		if (index < map.Count && index > 0) {
+		if (index < map.Count && index > 0 && ty >= 0 && ty < sizeY) {
 			return map[index];
 		}
 
