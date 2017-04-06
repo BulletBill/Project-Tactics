@@ -139,6 +139,46 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91bf499588db98948a56b03d0b0e5f04, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &42870516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 42870518}
+  - 114: {fileID: 42870517}
+  m_Layer: 0
+  m_Name: BattleController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &42870517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 42870516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c94dcb36295e4243be988f88722d5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TileSelector: {fileID: 1677738533}
+--- !u!4 &42870518
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 42870516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.754459, y: 7.101578, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
 --- !u!4 &875911399 stripped
 Transform:
   m_PrefabParentObject: {fileID: 425936, guid: e8612c87689c4df4d823f16a0c026255, type: 2}
@@ -241,7 +281,7 @@ GameObject:
   - 4: {fileID: 1446941014}
   - 212: {fileID: 1446941013}
   m_Layer: 10
-  m_Name: Combatant
+  m_Name: CharacterSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,7 +328,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
 --- !u!1001 &1671613195
 Prefab:
   m_ObjectHideFlags: 0
@@ -417,6 +457,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e8612c87689c4df4d823f16a0c026255, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1677738533 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11498376, guid: e8612c87689c4df4d823f16a0c026255,
+    type: 2}
+  m_PrefabInternal: {fileID: 1677738532}
+  m_Script: {fileID: 11500000, guid: 7d9d8c29b96abc749b194478be797252, type: 3}
 --- !u!20 &1830825528 stripped
 Camera:
   m_PrefabParentObject: {fileID: 2069198, guid: 91bf499588db98948a56b03d0b0e5f04,

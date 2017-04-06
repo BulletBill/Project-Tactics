@@ -63,18 +63,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BattleMap\Battle_Tile.cs" />
-    <Compile Include="Assets\Scripts\BattleMap\Battle_TileMap.cs" />
-    <Compile Include="Assets\Scripts\GameInstance.cs" />
-    <Compile Include="Assets\Scripts\InputSettings.cs" />
-    <Compile Include="Assets\Scripts\Interface\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\Interface\TerrainInfoUI.cs" />
-    <Compile Include="Assets\Scripts\Interface\TileSelection.cs" />
-    <Compile Include="Assets\Scripts\Utility\SpriteHelper.cs" />
-    <Compile Include="Assets\Scripts\World\LevelLoader.cs" />
-    <Compile Include="Assets\Scripts\World\Map.cs" />
-    <Compile Include="Assets\Scripts\World\Tile.cs" />
-    <Compile Include="Assets\Scripts\World\TileDefs.cs" />
+    <Compile Include="Assets\Code\BattleController.cs" />
+    <Compile Include="Assets\Code\BattleMap\Battle_Tile.cs" />
+    <Compile Include="Assets\Code\BattleMap\Battle_TileMap.cs" />
+    <Compile Include="Assets\Code\Characters\Combatant.cs" />
+    <Compile Include="Assets\Code\Characters\Party.cs" />
+    <Compile Include="Assets\Code\Characters\PartyMember.cs" />
+    <Compile Include="Assets\Code\GameInstance.cs" />
+    <Compile Include="Assets\Code\InputSettings.cs" />
+    <Compile Include="Assets\Code\Interface\CameraMovement.cs" />
+    <Compile Include="Assets\Code\Interface\TerrainInfoUI.cs" />
+    <Compile Include="Assets\Code\Interface\TileSelection.cs" />
+    <Compile Include="Assets\Code\Utility\SpriteHelper.cs" />
+    <Compile Include="Assets\Code\World\LevelLoader.cs" />
+    <Compile Include="Assets\Code\World\Map.cs" />
+    <Compile Include="Assets\Code\World\Tile.cs" />
+    <Compile Include="Assets\Code\World\TileDefs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

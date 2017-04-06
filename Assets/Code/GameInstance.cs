@@ -8,6 +8,8 @@ public class GameInstance : MonoBehaviour {
 
 	public InputSettings Input;
 
+	public PartyOfCharacters Party;
+
 	// Use this for initialization
 	void Awake() {
 		if (!Game) {
