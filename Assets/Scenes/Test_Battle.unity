@@ -167,6 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TileSelector: {fileID: 1677738533}
+  BattleMap: {fileID: 1165169217}
+  Units: []
 --- !u!4 &42870518
 Transform:
   m_ObjectHideFlags: 0
@@ -178,7 +180,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &875911399 stripped
 Transform:
   m_PrefabParentObject: {fileID: 425936, guid: e8612c87689c4df4d823f16a0c026255, type: 2}
@@ -229,6 +231,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47aadb63cc41ff747a5f26cfea854d99, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1165169217 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11439486, guid: 47aadb63cc41ff747a5f26cfea854d99,
+    type: 2}
+  m_PrefabInternal: {fileID: 1165169216}
+  m_Script: {fileID: 11500000, guid: c558dde9a2f37d744bbf1de1ee78fba8, type: 3}
 --- !u!1001 &1301864974
 Prefab:
   m_ObjectHideFlags: 0
@@ -328,7 +336,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
 --- !u!1001 &1671613195
 Prefab:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
 
+	public bool ShouldFollow;
 	public Transform FollowObject;
 	Vector2 FollowPos;
 
@@ -43,7 +44,7 @@ public class CameraMovement : MonoBehaviour {
 		NewPosition.x += Input.GetAxis("CameraHorizontal") * KeyboardScrollSpeed * Time.deltaTime;
 		NewPosition.y += Input.GetAxis("CameraVertical") * KeyboardScrollSpeed * Time.deltaTime;
 
-		if (FollowObject != null) {
+		if (null != FollowObject && true == ShouldFollow) {
 			FollowPos = FollowObject.GetComponent<SpriteRenderer>().bounds.center;
 
 			if (Mathf.Abs(NewPosition.x - FollowPos.x) > FollowMargin.x) {
