@@ -3,9 +3,10 @@ using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
 
-	public bool ShouldFollow;
 	public Transform FollowObject;
+	bool ShouldFollow;
 	Vector2 FollowPos;
+	Vector2 FollowPrevPos;
 
 	public Vector2 FollowMargin;
 	public Vector2 FollowSmoothing;
@@ -13,26 +14,29 @@ public class CameraMovement : MonoBehaviour {
 	public float KeyboardScrollSpeed = 1.0f;
 	public float MouseScrollSpeed = 1.0f;
 
+	public float MinZoomLevel = 3.0f;
+	public float MaxZoomLevel = 7.0f;
+
 	Camera ParentCamera;
 
 	//Constrains movement of the camera
 	public bool BoundsSet = false;
-	public Rect CameraBounds;
 	public Vector2 HalfCameraSize;
+	public Vector2 MapSize;
+	public Rect CameraBounds;
+
+	[ExecuteInEditMode]
+	void OnValidate() {
+		if (MinZoomLevel < 0.0f) { MinZoomLevel = 0.0f; }
+		if (MaxZoomLevel < MinZoomLevel) { MaxZoomLevel = MinZoomLevel; }
+	}
 
 	// Use this for initialization
 	void Awake() {
 		//Setting up boundry related values in Awake so that other objects can call SetCameraBounds in their Start() functions
 		ParentCamera = this.gameObject.GetComponent<Camera>();
 
-		if (ParentCamera != null) {
-			//Setup camera size for keeping in bounds
-			float height = 2f * ParentCamera.orthographicSize;
-			float width = height * ParentCamera.aspect;
-			HalfCameraSize = new Vector2(width / 2, height / 2);
-		} else {
-			Debug.LogError("CameraMovement.Awake: Could not find parent camera");
-		}
+		SetCameraSize(ParentCamera.orthographicSize);
 	}
 
 	void Start () {
@@ -40,19 +44,33 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		HandleInput();
+		UpdateCameraPosition();
+	}
+
+	void UpdateCameraPosition() {
 		Vector3 NewPosition = ParentCamera.transform.position;
 		NewPosition.x += Input.GetAxis("CameraHorizontal") * KeyboardScrollSpeed * Time.deltaTime;
 		NewPosition.y += Input.GetAxis("CameraVertical") * KeyboardScrollSpeed * Time.deltaTime;
 
-		if (null != FollowObject && true == ShouldFollow) {
+		if (null != FollowObject) {
 			FollowPos = FollowObject.GetComponent<SpriteRenderer>().bounds.center;
 
-			if (Mathf.Abs(NewPosition.x - FollowPos.x) > FollowMargin.x) {
-				NewPosition.x = Mathf.Lerp(NewPosition.x, FollowPos.x, FollowSmoothing.x * Time.deltaTime);
+			if (FollowPrevPos != FollowPos) {
+				ShouldFollow = true;
 			}
-			if (Mathf.Abs(NewPosition.y - FollowPos.y) > FollowMargin.y) {
-				NewPosition.y = Mathf.Lerp(NewPosition.y, FollowPos.y, FollowSmoothing.y * Time.deltaTime);
+
+			if (ShouldFollow) {
+
+				if (Mathf.Abs(NewPosition.x - FollowPos.x) > FollowMargin.x) {
+					NewPosition.x = Mathf.Lerp(NewPosition.x, FollowPos.x, FollowSmoothing.x * Time.deltaTime);
+				}
+				if (Mathf.Abs(NewPosition.y - FollowPos.y) > FollowMargin.y) {
+					NewPosition.y = Mathf.Lerp(NewPosition.y, FollowPos.y, FollowSmoothing.y * Time.deltaTime);
+				}
 			}
+
+			FollowPrevPos = FollowPos;
 		}
 
 		if (BoundsSet) {
@@ -62,16 +80,49 @@ public class CameraMovement : MonoBehaviour {
 			if (NewPosition.y > CameraBounds.height) { NewPosition.y = CameraBounds.height; }
 		}
 
-		ParentCamera.transform.position = NewPosition;		
+		//Stop following the target if the camera is no longer moving
+		if (NewPosition == ParentCamera.transform.position) {
+			ShouldFollow = false;
+		} else {
+			ParentCamera.transform.position = NewPosition;
+		}
 	}
 
-	public void SetCameraBounds(float SizeX, float SizeY) {
-		if (SizeX > 0 && SizeY > 0) {
-			CameraBounds = new Rect(HalfCameraSize.x, HalfCameraSize.y, SizeX - HalfCameraSize.x, SizeY - HalfCameraSize.y);
-			BoundsSet = true;
-		} else {
-			Debug.LogError("CameraMovement.SetCameraBounds: cannot set camera size to: " + SizeX.ToString() + ", " + SizeY.ToString());
-			BoundsSet = false;
+	void HandleInput() {
+		float ZoomDelta = -Input.GetAxis("Mouse ScrollWheel") * 4.0f;
+
+		if (ZoomDelta != 0.0f) {
+			SetCameraSize(ParentCamera.orthographicSize + ZoomDelta);
 		}
+	}
+
+	//Accessors
+	public void SetMapBounds(float SizeX, float SizeY) {
+		if (SizeX < 0) { SizeX = 0; }
+		if (SizeY < 0) { SizeY = 0; }
+
+		MapSize.x = SizeX;
+		MapSize.y = SizeY;
+		CalculateCameraBounds();
+	}
+
+	public void SetCameraSize(float NewSize) {
+
+		NewSize = Mathf.Clamp(NewSize, MinZoomLevel, MaxZoomLevel);
+
+		ParentCamera.orthographicSize = NewSize;
+		
+		//Setup camera size for keeping in bounds
+		float height = 2f * ParentCamera.orthographicSize;
+		float width = height * ParentCamera.aspect;
+		HalfCameraSize = new Vector2(width / 2, height / 2);
+
+		CalculateCameraBounds();
+	}
+
+
+	void CalculateCameraBounds() {
+		CameraBounds = new Rect(HalfCameraSize.x, HalfCameraSize.y, MapSize.x - HalfCameraSize.x, MapSize.y - HalfCameraSize.y);
+		BoundsSet = true;
 	}
 }

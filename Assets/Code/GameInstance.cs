@@ -18,10 +18,12 @@ public class GameInstance : MonoBehaviour {
 		} else {
 			GameObject.Destroy(this.gameObject);
 		}
+
+		Input = new InputSettings();
+		Party = gameObject.AddComponent<PartyOfCharacters>();
 	}
 
 	void Start () {
-		Input = new InputSettings();
 	}
 	
 	// Update is called once per frame

@@ -33,7 +33,7 @@ public class Battle_TileMap : MonoBehaviour {
 		sizeY = mapImage.height;
 
 		//Set camera bounds based on size
-		Camera.main.GetComponent<CameraMovement>().SetCameraBounds(sizeX, sizeY);
+		Camera.main.GetComponent<CameraMovement>().SetMapBounds(sizeX, sizeY);
 
 		for (int x = 0; x < sizeX; x++) {
 			for (int y = 0; y < sizeY; y++) {

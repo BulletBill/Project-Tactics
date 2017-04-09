@@ -52,7 +52,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -92,19 +92,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FollowObject: {fileID: 0}
-  FollowPos: {x: 0, y: 0}
   FollowMargin: {x: 8, y: 4}
   FollowSmoothing: {x: 1, y: 1}
   KeyboardScrollSpeed: 15
   MouseScrollSpeed: 1
+  MinZoomLevel: 4
+  MaxZoomLevel: 8
   BoundsSet: 1
+  HalfCameraSize: {x: 0, y: 0}
+  MapSize: {x: 0, y: 0}
   CameraBounds:
     serializedVersion: 2
     x: 0
     y: 0
     width: 32
     height: 32
-  HalfCameraSize: {x: 0, y: 0}
 --- !u!124 &12458540
 Behaviour:
   m_ObjectHideFlags: 1

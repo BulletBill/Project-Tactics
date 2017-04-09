@@ -128,13 +128,13 @@ Prefab:
       propertyPath: FollowObject
       value: 
       objectReference: {fileID: 875911399}
-    - target: {fileID: 11495308, guid: 91bf499588db98948a56b03d0b0e5f04, type: 2}
-      propertyPath: FollowMargin.x
-      value: 8
+    - target: {fileID: 2069198, guid: 91bf499588db98948a56b03d0b0e5f04, type: 2}
+      propertyPath: orthographic size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11495308, guid: 91bf499588db98948a56b03d0b0e5f04, type: 2}
-      propertyPath: FollowMargin.y
-      value: 4
+      propertyPath: ZoomSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91bf499588db98948a56b03d0b0e5f04, type: 2}
@@ -180,7 +180,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!4 &875911399 stripped
 Transform:
   m_PrefabParentObject: {fileID: 425936, guid: e8612c87689c4df4d823f16a0c026255, type: 2}
@@ -336,7 +336,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1001 &1671613195
 Prefab:
   m_ObjectHideFlags: 0
