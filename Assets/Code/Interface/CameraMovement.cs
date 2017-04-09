@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour {
 	Vector2 FollowPrevPos;
 
 	public Vector2 FollowMargin;
-	public Vector2 FollowSmoothing;
+	Vector2 FollowSmoothing = new Vector2(1.0f, 1.0f);
 
 	public float KeyboardScrollSpeed = 1.0f;
 	public float MouseScrollSpeed = 1.0f;
@@ -20,10 +20,10 @@ public class CameraMovement : MonoBehaviour {
 	Camera ParentCamera;
 
 	//Constrains movement of the camera
-	public bool BoundsSet = false;
-	public Vector2 HalfCameraSize;
-	public Vector2 MapSize;
-	public Rect CameraBounds;
+	bool BoundsSet = false;
+	Vector2 HalfCameraSize;
+	Vector2 MapSize;
+	Rect CameraBounds;
 
 	[ExecuteInEditMode]
 	void OnValidate() {
@@ -116,6 +116,7 @@ public class CameraMovement : MonoBehaviour {
 		float height = 2f * ParentCamera.orthographicSize;
 		float width = height * ParentCamera.aspect;
 		HalfCameraSize = new Vector2(width / 2, height / 2);
+		FollowMargin = new Vector2(width, height) * 0.4f;		
 
 		CalculateCameraBounds();
 	}

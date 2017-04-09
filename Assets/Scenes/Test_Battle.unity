@@ -128,14 +128,6 @@ Prefab:
       propertyPath: FollowObject
       value: 
       objectReference: {fileID: 875911399}
-    - target: {fileID: 2069198, guid: 91bf499588db98948a56b03d0b0e5f04, type: 2}
-      propertyPath: orthographic size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495308, guid: 91bf499588db98948a56b03d0b0e5f04, type: 2}
-      propertyPath: ZoomSpeed
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91bf499588db98948a56b03d0b0e5f04, type: 2}
   m_IsPrefabParent: 0
