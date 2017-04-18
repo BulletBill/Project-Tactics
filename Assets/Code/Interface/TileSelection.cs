@@ -16,14 +16,17 @@ public class TileSelection : MonoBehaviour {
 	public Battle_Tile SelectedTile;
 
 	//Reference to the tile map
-	Battle_TileMap TheTileMap;
+	TileMap TheTileMap;
 	//Reference to the tile UI
 	TerrainInfoUI TerrainInfo;
 
 	// Use this for initialization
 	void Start() {
-		TheTileMap = GameObject.FindGameObjectWithTag("MainTileMap").GetComponent<Battle_TileMap>();
-		TerrainInfo = GameObject.FindGameObjectWithTag("TerrainInfoUI").GetComponent<TerrainInfoUI>();
+		GameObject FindObject = GameObject.FindGameObjectWithTag("MainTileMap");
+		TheTileMap = FindObject ? FindObject.GetComponent<TileMap>() : null;
+
+		FindObject = GameObject.FindGameObjectWithTag("TerrainInfoUI");
+		TerrainInfo = FindObject ? FindObject.GetComponent<TerrainInfoUI>() : null;
 	}
 
 	// Update is called once per frame
@@ -69,18 +72,20 @@ public class TileSelection : MonoBehaviour {
 	}
 
 	void ChangeHover(int NewX, int NewY) {
+		if (null == TheTileMap) return;
+
 		//Only operate if the new tile is valid
-		Battle_Tile hoverTile = TheTileMap.TileAt(NewX, NewY);
+		Battle_Tile hoverTile = TheTileMap.TileAt(NewX, NewY) as Battle_Tile;
 
-		if (hoverTile != null) {
+		if (null == hoverTile) return;
 
-			SelectedTile = hoverTile;
+		SelectedTile = hoverTile;
 
-			this.transform.position = new Vector2(NewX, NewY);
-			HoverX = NewX;
-			HoverY = NewY;
+		this.transform.position = new Vector2(NewX, NewY);
+		HoverX = NewX;
+		HoverY = NewY;
 
-			TerrainInfo.SetValues(hoverTile.description, hoverTile.GetComponent<SpriteRenderer>().sprite);
-		}
+		TerrainInfo.SetValues(hoverTile.description, hoverTile.GetComponent<SpriteRenderer>().sprite);
 	}
 }
+

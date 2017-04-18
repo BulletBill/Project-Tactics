@@ -2,16 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Battle_TileMap : MonoBehaviour {
+public class TileMap : MonoBehaviour {
 
 	//Used to convert colors in the map image to tile objects
 	public TileDefs TileDefList;
 
 	//Array of tiles to represent the map
-	List<Battle_Tile> map = new List<Battle_Tile>();
+	List<Tile> map = new List<Tile>();
 
-	//Idealy we could generate the map from an image
-	public Texture2D mapImage;
+	
 
 	//Set by loaded map asset
 	int sizeX;
@@ -19,13 +18,13 @@ public class Battle_TileMap : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GenerateTileMap();
+		
 	}
 
 	//------------------------------------------------------
 	//------------------------------------------------------
 	//Creates the array of tile objects the make up the map
-	void GenerateTileMap() {
+	public void GenerateTileMap(Texture2D mapImage) {
 		EmptyMap();
 
 		Color32[] allPixels = mapImage.GetPixels32();
@@ -74,7 +73,7 @@ public class Battle_TileMap : MonoBehaviour {
 	//------------------------------------------------------
 	//------------------------------------------------------
 	//Map helper functions
-	public Battle_Tile TileAt(int tx, int ty) {
+	public Tile TileAt(int tx, int ty) {
 		int index = (tx * sizeX) + ty;
 		if (index < map.Count && index > 0 && ty >= 0 && ty < sizeY) {
 			return map[index];

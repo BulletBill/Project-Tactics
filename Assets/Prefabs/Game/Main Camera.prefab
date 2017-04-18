@@ -93,20 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FollowObject: {fileID: 0}
   FollowMargin: {x: 8, y: 4}
-  FollowSmoothing: {x: 1, y: 1}
   KeyboardScrollSpeed: 15
   MouseScrollSpeed: 1
   MinZoomLevel: 4
   MaxZoomLevel: 8
-  BoundsSet: 1
-  HalfCameraSize: {x: 0, y: 0}
-  MapSize: {x: 0, y: 0}
-  CameraBounds:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 32
-    height: 32
 --- !u!124 &12458540
 Behaviour:
   m_ObjectHideFlags: 1

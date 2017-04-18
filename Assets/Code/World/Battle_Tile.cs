@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Battle_Tile : MonoBehaviour {
+public class Battle_Tile : Tile {
 
 	//Game rules for the tile, set in editor, saved with prefab
 	public string Name;

@@ -64,21 +64,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Code\BattleController.cs" />
-    <Compile Include="Assets\Code\BattleMap\Battle_Tile.cs" />
-    <Compile Include="Assets\Code\BattleMap\Battle_TileMap.cs" />
     <Compile Include="Assets\Code\Characters\Combatant.cs" />
     <Compile Include="Assets\Code\Characters\Party.cs" />
     <Compile Include="Assets\Code\Characters\PartyMember.cs" />
+    <Compile Include="Assets\Code\Characters\PawnDefs.cs" />
     <Compile Include="Assets\Code\GameInstance.cs" />
     <Compile Include="Assets\Code\InputSettings.cs" />
     <Compile Include="Assets\Code\Interface\CameraMovement.cs" />
     <Compile Include="Assets\Code\Interface\TerrainInfoUI.cs" />
     <Compile Include="Assets\Code\Interface\TileSelection.cs" />
     <Compile Include="Assets\Code\Utility\SpriteHelper.cs" />
+    <Compile Include="Assets\Code\World\Battle_Tile.cs" />
     <Compile Include="Assets\Code\World\LevelLoader.cs" />
-    <Compile Include="Assets\Code\World\Map.cs" />
     <Compile Include="Assets\Code\World\Tile.cs" />
     <Compile Include="Assets\Code\World\TileDefs.cs" />
+    <Compile Include="Assets\Code\World\TileMap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
