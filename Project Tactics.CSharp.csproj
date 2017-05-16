@@ -64,10 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Code\BattleController.cs" />
+    <Compile Include="Assets\Code\BattleMap\AssignStartLocation.cs" />
     <Compile Include="Assets\Code\Characters\Combatant.cs" />
     <Compile Include="Assets\Code\Characters\Party.cs" />
     <Compile Include="Assets\Code\Characters\PartyMember.cs" />
     <Compile Include="Assets\Code\Characters\PawnDefs.cs" />
+    <Compile Include="Assets\Code\Characters\Stat.cs" />
     <Compile Include="Assets\Code\GameInstance.cs" />
     <Compile Include="Assets\Code\InputSettings.cs" />
     <Compile Include="Assets\Code\Interface\CameraMovement.cs" />

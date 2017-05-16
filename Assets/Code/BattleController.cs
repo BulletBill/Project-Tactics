@@ -8,6 +8,13 @@ public struct BattleUnit {
 	public GameObject UnitPawn;
 }
 
+[System.Serializable]
+public struct StartingPosition {
+	public enum LocationTeam { NONE, PLAYER, ENEMY }
+	public LocationTeam Team;
+	public Vector2 Location;
+}
+
 public class BattleController : MonoBehaviour {
 
 	public GameObject TileSelectorPrefab;
@@ -20,6 +27,8 @@ public class BattleController : MonoBehaviour {
 
 	public Texture2D MapImage;
 	public List<BattleUnit> Units;
+
+	public List<StartingPosition> StartingPositions;
 
 	//Used to convert pawn image names in the to pawn objects
 	public PawnDefs PawnDefList;
@@ -67,6 +76,13 @@ public class BattleController : MonoBehaviour {
 
 				Units.Add(NewUnit);
 			}
+		}
+	}
+
+	void OnDrawGizmos() {
+		Gizmos.color = Color.red;
+		foreach (var Spot in StartingPositions) {
+			Gizmos.DrawSphere(new Vector3(Spot.Location.x, Spot.Location.y, 0.0f), 0.5f);
 		}
 	}
 }

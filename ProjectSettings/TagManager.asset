@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MainTileMap
   - TerrainInfoUI
+  - BattleController
   layers:
   - Default
   - TransparentFX

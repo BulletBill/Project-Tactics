@@ -45,6 +45,16 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278228480
     prefab: {fileID: 173400, guid: a4a6665c9a44b75458df683b2773b122, type: 2}
+  - name: Grass_PlayerStart
+    color:
+      serializedVersion: 2
+      rgba: 4288058880
+    prefab: {fileID: 100972, guid: 3432cfcdbd104c242b945b54605e36f6, type: 2}
+  - name: Grass_EnemyStart
+    color:
+      serializedVersion: 2
+      rgba: 4278228630
+    prefab: {fileID: 181130, guid: 3722911d57998c84687d434ed29dab89, type: 2}
   - name: Water
     color:
       serializedVersion: 2
@@ -58,12 +68,40 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: colorToPrefab.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: colorToPrefab.Array.data[1].name
+      value: Grass_PlayerStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: colorToPrefab.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 100972, guid: 3432cfcdbd104c242b945b54605e36f6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: colorToPrefab.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 181130, guid: 3722911d57998c84687d434ed29dab89, type: 2}
+    - target: {fileID: 0}
+      propertyPath: colorToPrefab.Array.data[2].name
+      value: Grass_EnemyStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: colorToPrefab.Array.data[1].color.rgba
+      value: 4288058880
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: colorToPrefab.Array.data[2].color.rgba
+      value: 4278228630
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

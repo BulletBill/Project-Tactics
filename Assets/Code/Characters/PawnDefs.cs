@@ -8,7 +8,7 @@ public class NameToPawn {
 	public GameObject prefab;
 }
 
-//This class exists to have a central definition for converting colored pixels to tiles
+//This class exists to have a central definition for converting colored unit data to visible sprites
 //All values should be defined in the editor and saved as a prefab to be used in the approriate scene
 public class PawnDefs : MonoBehaviour {
 

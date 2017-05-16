@@ -11,7 +11,7 @@ public class Battle_Tile : Tile {
 	
 	//Orientation is based on nearby tiles, or random in the case of something like rocks or debris
 	//Affects which version the tile will use
-	//int orientation;
+	int orientation;
 
 	void Start() {
 
