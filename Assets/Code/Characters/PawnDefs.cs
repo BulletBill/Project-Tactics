@@ -8,8 +8,8 @@ public class NameToPawn {
 	public GameObject prefab;
 }
 
-//This class exists to have a central definition for converting colored unit data to visible sprites
-//All values should be defined in the editor and saved as a prefab to be used in the approriate scene
+// This class exists to have a central definition for converting named unit data to visible sprites
+// All values should be defined in the editor and saved as a prefab to be used in the approriate scene
 public class PawnDefs : MonoBehaviour {
 
 	static public PawnDefs NameToPawn { get; protected set; }
@@ -19,10 +19,11 @@ public class PawnDefs : MonoBehaviour {
 	void Start() {
 	}
 
-	public GameObject GetPawnOfName(string Name) {
+	public GameObject CreatePawnOfName(string Name) {
 		foreach (var p in nameToPrefab) {
 			if (p.name == Name) {
-				return p.prefab;
+
+				return Instantiate(p.prefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
 			}
 		}
 

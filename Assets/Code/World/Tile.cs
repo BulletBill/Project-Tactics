@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//This is the cosmetic tile class for walking around the world map
+// This is the base tile class with no specific game information
+
+// Position of the tile is assumed to equal the position of the game object's transform
 
 public class Tile : MonoBehaviour {
-
-	//Determines if the player can walk through the tile
-	public bool blocking;
-
 }

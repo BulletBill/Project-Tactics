@@ -8,9 +8,7 @@ public class TileMap : MonoBehaviour {
 	public TileDefs TileDefList;
 
 	//Array of tiles to represent the map
-	List<Tile> map = new List<Tile>();
-
-	
+	public List<Tile> map = new List<Tile>();	
 
 	//Set by loaded map asset
 	int sizeX;
@@ -18,7 +16,7 @@ public class TileMap : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		transform.position = Vector3.zero;
 	}
 
 	//------------------------------------------------------
@@ -54,7 +52,7 @@ public class TileMap : MonoBehaviour {
 	void SpawnTileAt(Color32 c, int x, int y) {
 
 		foreach (ColorToTile ctp in TileDefList.colorToPrefab) {
-			if (ctp.color.Equals(c)) { //ctp.color.r == c.r && ctp.color.g == c.g && ctp.color.b == c.b && ctp.color.a == c.a) {
+			if (ctp.color.Equals(c)) {
 				GameObject go = Instantiate(ctp.prefab, new Vector3(x, y, 0), Quaternion.identity) as GameObject;
 				go.transform.parent = transform;
 

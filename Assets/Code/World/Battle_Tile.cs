@@ -8,6 +8,7 @@ public class Battle_Tile : Tile {
 	public string Name;
 	public int movementCost;
 	public List<string> description;
+	public bool bBlocking;
 	
 	//Orientation is based on nearby tiles, or random in the case of something like rocks or debris
 	//Affects which version the tile will use

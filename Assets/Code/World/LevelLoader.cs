@@ -43,8 +43,8 @@ public class LevelLoader : MonoBehaviour {
 		}
 
 		foreach(ColorToTile ctp in TileDefs.ColorToTile.colorToPrefab) {
-			if (ctp.color.Equals(c)) { //ctp.color.r == c.r && ctp.color.g == c.g && ctp.color.b == c.b && ctp.color.a == c.a) {
-				GameObject go = Instantiate(ctp.prefab, new Vector3(x, y, 0), Quaternion.identity) as GameObject;
+			if (ctp.color.Equals(c)) {
+				Instantiate(ctp.prefab, new Vector3(x, y, 0), Quaternion.identity);
 				return;
 			}
 		}

@@ -3,30 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public struct BattleUnit {
-	public Combatant UnitStats;
-	public GameObject UnitPawn;
-}
-
-[System.Serializable]
-public struct StartingPosition {
+public class StartingPosition {
 	public enum LocationTeam { NONE, PLAYER, ENEMY }
 	public LocationTeam Team;
 	public Vector2 Location;
+	public bool bUsed;
 }
 
 public class BattleController : MonoBehaviour {
 
 	public GameObject TileSelectorPrefab;
-	GameObject TileSelectorObj;
 	TileSelection TileSelector;
 
 	public GameObject BattleMapPrefab;
-	GameObject BattleMapObj;
 	TileMap BattleMap;
 
 	public Texture2D MapImage;
-	public List<BattleUnit> Units;
+	public List<Combatant> Units;
 
 	public List<StartingPosition> StartingPositions;
 
@@ -36,7 +29,7 @@ public class BattleController : MonoBehaviour {
 	//Create instances of objects so they can be referenced by each other on Start
 	void Awake () {
 		//Spawn map
-		BattleMapObj = Instantiate(BattleMapPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+		GameObject BattleMapObj = Instantiate(BattleMapPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
 		if (BattleMapObj) { BattleMap = BattleMapObj.GetComponent<TileMap>(); }
 
 		if (MapImage && BattleMap) {
@@ -45,18 +38,17 @@ public class BattleController : MonoBehaviour {
 		}
 		
 		//Spawn tile selection object
-		TileSelectorObj = Instantiate(TileSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+		GameObject TileSelectorObj = Instantiate(TileSelectorPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
 		if (TileSelectorObj) {
 			Camera.main.GetComponent<CameraMovement>().FollowObject = TileSelectorObj.transform;
 			TileSelector = TileSelectorObj.GetComponent<TileSelection>();
 		}
-
-		//Spawn Units
-		PopulateUnitList();
 	}
 
 	// Use this for initialization
 	void Start () {
+		//Spawn Units
+		PopulateUnitList();
 	}
 	
 	// Update is called once per frame
@@ -65,24 +57,37 @@ public class BattleController : MonoBehaviour {
 	}
 
 	private void PopulateUnitList() {
+		// Spawn units for the party
 		if (GameInstance.Game != null && GameInstance.Game.Party != null) {
-			foreach (Combatant c in GameInstance.Game.Party.PartyMembers) {
-				BattleUnit NewUnit = new BattleUnit();
-				NewUnit.UnitStats = c;
-				GameObject PlayerPawn = PawnDefList.GetPawnOfName("Character");
-				if (PlayerPawn) {
-					NewUnit.UnitPawn = PlayerPawn;
-				}
 
-				Units.Add(NewUnit);
+			foreach (Combatant c in GameInstance.Game.Party.PartyMembers) {
+				Units.Add(c);
+
+				GameObject PlayerPawn = PawnDefList.CreatePawnOfName("Character");
+				if (null == PlayerPawn) continue;
+
+				PlayerPawn.transform.position = FindStartingLocation(StartingPosition.LocationTeam.PLAYER);
+				c.SetPawn(PlayerPawn);
 			}
 		}
+
+		// Spawn units for the enemy
 	}
 
-	void OnDrawGizmos() {
-		Gizmos.color = Color.red;
-		foreach (var Spot in StartingPositions) {
-			Gizmos.DrawSphere(new Vector3(Spot.Location.x, Spot.Location.y, 0.0f), 0.5f);
+	private Vector2 FindStartingLocation(StartingPosition.LocationTeam Team) {
+		foreach (var s in StartingPositions) {
+			if (false == s.bUsed && s.Team == Team) {
+				s.bUsed = true;
+				return s.Location;
+			}
 		}
+		return Vector2.zero;
 	}
+
+// 	void OnDrawGizmos() {
+// 		Gizmos.color = Color.red;
+// 		foreach (var Spot in StartingPositions) {
+// 			Gizmos.DrawSphere(new Vector3(Spot.Location.x, Spot.Location.y, 0.0f), 0.5f);
+// 		}
+// 	}
 }

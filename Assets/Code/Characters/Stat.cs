@@ -5,36 +5,44 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Stat {
 
-	public float FinalValue { get; protected set; }
-	public float BaseValue { get; protected set; }
+	public float FinalValue;    // The maximum value of the stat
+	public float BaseValue;     // The base unmodified value of the state
+	public float SlidingValue;  // value that can slide between 0 and the Max value. Used for resources like health, mana, xp, etc
 	Dictionary<string, float> AddModifiers;
 	Dictionary<string, float> MultiModifiers;
 
 	public Stat() {
 		BaseValue = 0.0f;
 		FinalValue = BaseValue;
-		AddModifiers.Clear();
-		MultiModifiers.Clear();
+		SlidingValue = BaseValue;
+
+		AddModifiers = new Dictionary<string, float>();
+		MultiModifiers = new Dictionary<string, float>();
 	}
 
-	public Stat(float StartingValue, bool HasMax) {
+	public Stat(float StartingValue) {
 		BaseValue = StartingValue;
-		FinalValue = BaseValue;
-		AddModifiers.Clear();
-		MultiModifiers.Clear();
+		FinalValue = StartingValue;
+		SlidingValue = StartingValue;
+
+		AddModifiers = new Dictionary<string, float>();
+		MultiModifiers = new Dictionary<string, float>();
 	}
 
-	void SetValue(float NewBase) {
+	// Sets the BASE value
+	public void SetValue(float NewBase) {
 		BaseValue = NewBase;
 		Recalculate();
 	}
 
-	void ChangeValue(float Amount) {
+	// Changes the BASE value by an amount
+	public void ChangeValue(float Amount) {
 		BaseValue += Amount;
 		Recalculate();
 	}
 
-	void CreatedMod(string Ident, float Value, bool IsMulti) {
+	// Adds a new MODIFIER or replaces an existing one with the same name
+	public void CreateMod(string Ident, float Value, bool IsMulti) {
 		Dictionary<string, float> WorkingDict = IsMulti ? MultiModifiers : AddModifiers;
 
 		if (WorkingDict.ContainsKey(Ident)) {
@@ -43,17 +51,28 @@ public class Stat {
 		}
 
 		WorkingDict.Add(Ident, Value);
+		Recalculate();
 	}
 
-	void RemoveMod(string Ident, bool IsMulti) {
+	// Removes a MODIFIER of a given name
+	public void RemoveMod(string Ident, bool IsMulti) {
 		Dictionary<string, float> WorkingDict = IsMulti ? MultiModifiers : AddModifiers;
 
 		if (WorkingDict.ContainsKey(Ident)) {
 			WorkingDict.Remove(Ident);
 		}
+		Recalculate();
 	}
 
-	void Recalculate() {
+	// Removes all MODIFIERs
+	public void ClearMods() {
+		AddModifiers.Clear();
+		MultiModifiers.Clear();
+		Recalculate();
+	}
+
+	// Calculates a FINAL maximum value by applying MODIFIERs to the BASE value
+	public void Recalculate() {
 		FinalValue = BaseValue;
 
 		foreach (var f in AddModifiers) {
@@ -66,5 +85,27 @@ public class Stat {
 		}
 
 		FinalValue *= TotalMulti < 0.0f ? 0.0f : TotalMulti;
+
+		SlidingValue = Mathf.Clamp(SlidingValue, 0.0f, FinalValue);
+	}
+
+	// Sets the SLIDING value to the FINAL value
+	public void ResetSlidingValue() {
+		SlidingValue = FinalValue;
+	}
+
+	// Adds the given amount to the SLIDING value, returns the new SLIDING value
+	public float AddSlidingValue(float Adjustment) {
+		SlidingValue += Adjustment;
+		SlidingValue = Mathf.Clamp(SlidingValue, 0.0f, FinalValue);
+
+		return SlidingValue;
+	}
+
+	public float MultiplySlidingValue(float Adjustment) {
+		SlidingValue *= Adjustment;
+		SlidingValue = Mathf.Clamp(SlidingValue, 0.0f, FinalValue);
+
+		return SlidingValue;
 	}
 }
