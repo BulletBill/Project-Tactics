@@ -30,14 +30,14 @@ public class StatInspector : PropertyDrawer {
 		var BaseRect = new Rect(position.x + 90, position.y, position.width - 90, position.height);
 
 		// Draw the fields with the correct data
-		string SlideValue = property.FindPropertyRelative("SlidingValue").floatValue.ToString();
+		string SlideValue = property.FindPropertyRelative("Value").floatValue.ToString();
 		string TotalValue = "/ " + property.FindPropertyRelative("FinalValue").floatValue.ToString();
-		string BaseValue = "(" + property.FindPropertyRelative("BaseValue").floatValue.ToString() + ")";
+		//string BaseValue = "(" + property.FindPropertyRelative("BaseValue").floatValue.ToString() + ")";
 
 		EditorGUI.LabelField(SlideRect, SlideValue);
 		EditorGUI.LabelField(TotalRect, TotalValue);
-		EditorGUI.LabelField(BaseRect, BaseValue);
-		//EditorGUI.PropertyField(BaseRect, property.FindPropertyRelative("BaseValue"), GUIContent.none);
+		//EditorGUI.LabelField(BaseRect, BaseValue);
+		EditorGUI.PropertyField(BaseRect, property.FindPropertyRelative("BaseValue"), GUIContent.none);
 
 		// Reset the indent back to normal
 		EditorGUI.indentLevel = indent;

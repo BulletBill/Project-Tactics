@@ -12,6 +12,9 @@ public class PartyOfCharacters : MonoBehaviour {
 	}
 
 	void Start () {
+		foreach (var p in PartyMembers) {
+			p.Start();
+		}
 	}
 	
 	// Update is called once per frame
@@ -32,5 +35,11 @@ public class PartyOfCharacters : MonoBehaviour {
 		PartyMembers[1].Name = "Brom";
 		PartyMembers[2].Name = "Silver Winter";
 		PartyMembers[3].Name = "Kabui";
+	}
+
+	void OnValidate() {
+		foreach (var p in PartyMembers) {
+			p.OnValidate();
+		}
 	}
 }
