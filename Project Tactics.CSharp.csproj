@@ -65,7 +65,9 @@
   <ItemGroup>
     <Compile Include="Assets\Code\BattleController.cs" />
     <Compile Include="Assets\Code\BattleMap\AssignStartLocation.cs" />
+    <Compile Include="Assets\Code\Characters\Abilities\Ability.cs" />
     <Compile Include="Assets\Code\Characters\Combatant.cs" />
+    <Compile Include="Assets\Code\Characters\Items\Item.cs" />
     <Compile Include="Assets\Code\Characters\Party.cs" />
     <Compile Include="Assets\Code\Characters\PartyMember.cs" />
     <Compile Include="Assets\Code\Characters\PawnDefs.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Assets\Code\GameInstance.cs" />
     <Compile Include="Assets\Code\InputSettings.cs" />
     <Compile Include="Assets\Code\Interface\CameraMovement.cs" />
+    <Compile Include="Assets\Code\Interface\NewBehaviourScript.cs" />
     <Compile Include="Assets\Code\Interface\TerrainInfoUI.cs" />
     <Compile Include="Assets\Code\Interface\TileSelection.cs" />
     <Compile Include="Assets\Code\Utility\SpriteHelper.cs" />

@@ -11,6 +11,7 @@ public class Combatant {
 
 	// Action stuff
 	bool HasActed;
+	List<Ability> Abilities = new List<Ability>();
 
 	// Stat levels go here
 	[Header("Base Stats")]

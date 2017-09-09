@@ -3,8 +3,8 @@ using System.Collections;
 
 public class TileSelection : MonoBehaviour {
 
-	//public enum SelectMode { None, TargetAlly, TargetEnemy, TargetArea, Move }
-	//SelectMode CurrentMode = SelectMode.None;
+	public enum SelectMode { Paused, FreeSelect, TargetTile }
+	SelectMode CurrentMode = SelectMode.FreeSelect;
 
 	Vector2 MousePosition;
 	Vector2 PrevMousePosition;
@@ -36,6 +36,9 @@ public class TileSelection : MonoBehaviour {
 
 	void Update() {
 		MousePosition = Input.mousePosition;
+
+		// Early exit when paused
+		if (CurrentMode == SelectMode.Paused) return;
 
 		//Move hover selection with mouse
 		if (PrevMousePosition != MousePosition) {
